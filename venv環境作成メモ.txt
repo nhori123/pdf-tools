@@ -1,0 +1,31 @@
+# venv作成
+python -m venv .pdf-tools
+
+# venvのアクティブ化
+.pdf-tools\Scripts\activate
+
+# PIPの更新
+python.exe -m pip install --upgrade pip
+
+# PyPDF2のインストール
+pip install PyPDF2
+
+# PyMuPDFとPillowのインストール（PDFのプレビューで利用）
+pip install PyMuPDF Pillow
+
+# pdf2imageのインストール
+pip install pdf2image
+
+前提として、popplerが必要　→https://github.com/oschwartz10612/poppler-windows/releases/
+gitから取得して、binフォルダをシステム環境変数のpathに通す必要がある
+
+# PyInstallerのインストール
+pip install pyinstaller
+
+##PyInstallerを使ったコンパイル（OneFile化+アイコン）
+pyinstaller --onefile --noconsole --icon=pdf-splitter.ico --add-data "pdf-splitter.ico;." pdf-splitter_v004.py
+pyinstaller --onefile --noconsole --icon=pdf-merge.ico --add-data "pdf-merge.ico;." pdf-merge_v007.py
+　→スクリプト内で指定したCSVのアイコンも含めてEXE化する
+
+# pip freezeコマンドを使用して、要件をファイルに出力(requirements.txt)の作成
+pip freeze > requirements.txt
